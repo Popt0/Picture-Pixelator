@@ -11,7 +11,7 @@ def main():
     invalidInput = True;
     while invalidInput:
         try:
-            print("Pixelate or shrink all pictures in the \"ToPixelate\" folder "
+            print("Pixelate or shrink all pictures in the \"ToTransform\" folder "
                   "with your desired dimensions\n\n"
                   "1 - Pixelate\n2 - Shrink\n3 - Enlarge\n");
             modeInput = int(input("Mode: "));
@@ -27,10 +27,10 @@ def main():
 
     picNum = 1;
     
-    with os.scandir(appLocation + "ToPixelate/") as pictures:
+    with os.scandir(appLocation + "ToTransform/") as pictures:
         #Cycles through all pictures in the directory
         for picture in pictures:
-            image = Image.open(appLocation + "ToPixelate/" + picture.name);
+            image = Image.open(appLocation + "ToTransform/" + picture.name);
 
             #Pixelates image by shrinking then enlarging the image with the new pixel data
             if modeInput == 1:
@@ -116,7 +116,7 @@ def main():
             
             #Finalizes image by putting in the new pixel data and saving in to the output folder
             newPicture.putdata(newData);
-            newPicture.save(appLocation + "Pixelated/Picture" + str(picNum) + ".jpg");
+            newPicture.save(appLocation + "Transformed/Picture" + str(picNum) + ".jpg");
             
             print("\nPicture #" + str(picNum) + " generated.\n");
             picNum += 1;
