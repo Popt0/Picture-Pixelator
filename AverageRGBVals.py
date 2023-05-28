@@ -1,4 +1,4 @@
-# Takes a 3D array defining RGB values and returns a new pixel
+# Takes a 3D array of defined RGB values and returns a new pixel
 # with the average R,G, and B values from the pixels passed in
 
 def AverageRGBVals(pixels):
@@ -19,5 +19,17 @@ def AverageRGBVals(pixels):
         gAverage = int(gTotal/pixelCount);
         bAverage = int(bTotal/pixelCount);
         newPixel = (rAverage, gAverage, bAverage);
+
+    return newPixel;
+
+# Takes a 3D array of defined RGBA values and returns a new pixel
+# with the average R,G,B, and A values from the pixels passed in
+def AverageRGBAVals(pixels):
+    rTotal     = 0;
+    gTotal     = 0;
+    bTotal     = 0;
+    aTotal     = 0;
+    pixelCount = 0;
+    newPixel = (0, 0, 0, 0);
 
     return newPixel;

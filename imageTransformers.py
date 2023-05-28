@@ -18,7 +18,8 @@ def CompressImage(newH, newW, picture):
                     picCol = column + (secWidth * w);
                     picRow = row + (secHeight * h);
                     coord = picCol, picRow;
-                    pixels.append(picture.getpixel(coord));
+                    currentPixel = picture.getpixel(coord);
+                    pixels.append(currentPixel);
                 
             newPixel = AverageRGBVals(pixels);
             finalPixels.append(newPixel);

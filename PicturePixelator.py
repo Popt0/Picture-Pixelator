@@ -5,7 +5,20 @@ import os;
 def main():
 
     #Paste directory of the application here for proper function
-    appLocation = "C:/Users/narut/OneDrive/Documents/GitHub/Picture-Pixelator/";
+    appLocation = "C:/Users/lapal/Documents/GitHub/Picture-Pixelator";
+
+    #All variables used in the program in order of appearance
+    modeInput   :int;
+    invalidInput:bool;
+    picNum      :int;
+    image       :Image;
+    imageType   :str;
+    index       :int;
+    newWidth    :int;
+    newHeight   :int;
+    newPicture  :Image;
+    newData     :list;
+    growthFactor:int;
 
     #Gets user input for the program's mode while checking for incorrect inputs
     invalidInput = True;
@@ -27,10 +40,20 @@ def main():
 
     picNum = 1;
     
-    with os.scandir(appLocation + "ToTransform/") as pictures:
+    with os.scandir(appLocation + "/ToTransform/") as pictures:
         #Cycles through all pictures in the directory
         for picture in pictures:
-            image = Image.open(appLocation + "ToTransform/" + picture.name);
+            image = Image.open(appLocation + "/ToTransform/" + picture.name).convert("RGB");
+
+            imageType = "";
+            index = 0;
+            while imageType == "":
+                if picture.name[index] == ".":
+                    imageType = picture.name[index: len(picture.name)];
+                    print(imageType);
+                else:
+                    index += 1;
+                
 
             #Pixelates image by shrinking then enlarging the image with the new pixel data
             if modeInput == 1:
@@ -116,7 +139,7 @@ def main():
             
             #Finalizes image by putting in the new pixel data and saving in to the output folder
             newPicture.putdata(newData);
-            newPicture.save(appLocation + "Transformed/Picture" + str(picNum) + ".jpg");
+            newPicture.save(appLocation + "/Transformed/Picture" + str(picNum) + ".jpg");
             
             print("\nPicture #" + str(picNum) + " generated.\n");
             picNum += 1;
